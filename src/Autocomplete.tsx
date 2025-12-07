@@ -3,24 +3,38 @@ import { normalSentences } from "./data/normal";
 import AddSentenceButton from "./AddSentenceButton";
 
 const LOCAL_STORAGE_KEY = "sentences";
+const LOCAL_STORAGE_VERSION_KEY = "sentences_version";
+const DATA_VERSION = "v2"; // 🔁 Change this whenever you update normalSentences
 
 const Autocomplete: React.FC = () => {
-  // Load sentences from localStorage or fallback to normalSentences
+  // Load sentences from localStorage or use normalSentences if version changed
   const [sentences, setSentences] = useState<string[]>(() => {
+    const storedVersion = localStorage.getItem(LOCAL_STORAGE_VERSION_KEY);
     const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
-    return stored ? JSON.parse(stored) : normalSentences;
+
+    // If version matches and data exists → load from storage
+    if (stored && storedVersion === DATA_VERSION) {
+      return JSON.parse(stored);
+    }
+
+    // Otherwise → reset to new data
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(normalSentences));
+    localStorage.setItem(LOCAL_STORAGE_VERSION_KEY, DATA_VERSION);
+    return normalSentences;
   });
 
   const [inputValue, setInputValue] = useState("");
   const [filtered, setFiltered] = useState<string[]>([]);
 
   useEffect(() => {
-    // Store sentences in localStorage whenever they change
+    // Store updated sentences in localStorage
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(sentences));
+    localStorage.setItem(LOCAL_STORAGE_VERSION_KEY, DATA_VERSION);
   }, [sentences]);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const input = e.target.value.trim();
+    const input = e.target.value;
+
     setInputValue(input);
 
     if (!input) {
@@ -62,6 +76,12 @@ const Autocomplete: React.FC = () => {
   const addSentence = (english: string, tamil: string) => {
     const newSentence = `${english} \n\n ${tamil}`;
     setSentences([...sentences, newSentence]);
+  };
+
+  const resetToDefault = () => {
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    localStorage.removeItem(LOCAL_STORAGE_VERSION_KEY);
+    setSentences(normalSentences);
   };
 
   return (
@@ -114,6 +134,12 @@ const Autocomplete: React.FC = () => {
 
       {/* Floating Add Button Component */}
       <AddSentenceButton onAdd={addSentence} />
+
+      {/* Optional reset button (for debugging or testing new data) */}
+      <button onClick={resetToDefault} className="reset-btn">
+  Reset
+</button>
+
     </div>
   );
 };

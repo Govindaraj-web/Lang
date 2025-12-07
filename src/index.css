@@ -170,6 +170,23 @@ textarea {
   display: flex;
   justify-content: space-between;
 }
+.reset-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  background: #ff4d4d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reset-btn:hover {
+  background: #e64444;
+}
+
 
 /* Mobile styles */
 @media (max-width: 768px) {
