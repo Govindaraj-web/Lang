@@ -1,0 +1,184 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #262a2f;
+  color: #333;
+}
+
+.search-box {
+  width: 600px;
+  background: #fff;
+  margin: 200px auto 0;
+  border-radius: 5px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+textarea {
+  flex: 1;
+  height: 70px;
+  resize: none;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 18px;
+  color: #333;
+  line-height: 1;
+  font-family: "Poppins", sans-serif;
+  white-space: pre-line; /* ensures line breaks render properly */
+  padding-right: 70px; /* space for buttons */
+}
+
+::placeholder {
+  color: #555;
+  text-align:center;
+}
+
+/* same overlay button styling */
+.speak-btn-input,
+.clear-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+.speak-btn-input {
+  right: 45px;
+}
+
+.clear-btn {
+  right: 15px;
+}
+
+.speak-btn-input:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.speak-btn-input:hover,
+.clear-btn:hover {
+  opacity: 0.7;
+}
+
+
+
+/* Result Box Styling */
+
+.result-box ul {
+  border-top: 1px solid #999;
+  padding: 15px 10px;
+}
+
+.result-box ul li {
+  list-style: none;
+  border-radius: 3px;
+  padding: 15px 10px;
+  cursor: pointer;
+}
+
+.result-box ul li:hover {
+  background-color: #e9f3ff;
+}
+
+.result-box {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+.list-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.english-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tamil-line {
+  font-size: 14px;
+  color: #555;
+}
+
+
+
+/* Floating Add Button */
+.add-sentence-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #007bff;
+  color: #fff;
+  font-size: 42px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Popup container */
+.add-sentence-popup {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 300px;
+  z-index: 1000;
+}
+
+/* Popup input fields */
+.add-sentence-popup input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 6px 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Buttons inside popup */
+.add-sentence-popup .save-btn,
+.add-sentence-popup .close-btn {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.add-sentence-popup .save-btn {
+  background: #28a745;
+}
+
+.add-sentence-popup .close-btn {
+  background: #dc3545;
+}
+
+/* Flex container for buttons */
+.add-sentence-popup .button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+

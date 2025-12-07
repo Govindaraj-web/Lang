@@ -1,0 +1,17 @@
+tsx install method:
+
+ npm create vite@latest lang(appname) --template react-ts  
+
+│
+◇  Select a framework:
+│  React
+│
+◇  Select a variant:
+│  TypeScript + React Compiler
+│
+◇  Use rolldown-vite (Experimental)?:
+│  No
+│
+◇  Install with npm and start now?
+│  Yes
+│
